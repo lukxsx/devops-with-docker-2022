@@ -1,0 +1,22 @@
+# On host machine
+docker run -d --name ex14 ubuntu sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+
+# Launch bash on the container 
+docker exec -it ex14 bash
+
+# On the container, installing curl
+apt update
+apt install curl
+
+# Exit bash, next on the host machine
+docker attach ex14
+
+helsinki.fi
+Searching..
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="https://www.helsinki.fi/">here</a>.</p>
+</body></html>

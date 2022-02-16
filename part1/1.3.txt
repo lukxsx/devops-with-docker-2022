@@ -1,0 +1,21 @@
+$ docker run -d --name 13 devopsdockeruh/simple-web-service:ubuntu
+9d5c0f03aad710db23016af9ea36bc46d6ad796c8daa0b3c27bcef4c48cadd78
+$ docker exec -it 13 bash
+root@9d5c0f03aad7:/usr/src/app# tail -f ./text.log
+2022-02-16 17:29:09 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2022-02-16 17:29:11 +0000 UTC
+2022-02-16 17:29:13 +0000 UTC
+2022-02-16 17:29:15 +0000 UTC
+2022-02-16 17:29:17 +0000 UTC
+2022-02-16 17:29:19 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2022-02-16 17:29:21 +0000 UTC
+2022-02-16 17:29:23 +0000 UTC
+2022-02-16 17:29:25 +0000 UTC
+2022-02-16 17:29:27 +0000 UTC
+2022-02-16 17:29:29 +0000 UTC
+Secret message is: 'You can find the source code here: https://github.com/docker-hy'
+2022-02-16 17:29:31 +0000 UTC
+^C
+root@9d5c0f03aad7:/usr/src/app#
