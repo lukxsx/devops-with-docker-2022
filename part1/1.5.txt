@@ -1,0 +1,4 @@
+The command "docker images" shows that the size of Ubuntu version is 83 MB and the size of the Alpine version is just 15.7 MB.
+
+The secret message seems to be the same,
+"Secret message is: 'You can find the source code here: https://github.com/docker-hy'"

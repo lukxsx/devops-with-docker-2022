@@ -1,0 +1,4 @@
+The commands that I used:
+
+$ docker build . -t web-server
+$ docker run web-server
