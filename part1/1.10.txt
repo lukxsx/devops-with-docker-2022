@@ -1,0 +1,4 @@
+$ docker run --rm -p 8080:8080 devopsdockeruh/simple-web-service server
+
+The webpage says
+{"message":"You connected to the following path: /","path":"/"}

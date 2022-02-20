@@ -1,0 +1,4 @@
+Make sure to have the project in the same directory when building.
+
+$ docker build . -t ex11spring
+$ docker run --rm -p 8080:8080 ex11spring

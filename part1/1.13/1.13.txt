@@ -1,0 +1,2 @@
+$ docker build . -t back
+$ docker run --rm -p 8080:8080 back
