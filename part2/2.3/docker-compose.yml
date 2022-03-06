@@ -1,0 +1,18 @@
+# This assumes that you have build the backend and frontend from ex 1.14
+# with the names "front" and "back"
+
+version: '3.8'
+services:
+    backend:
+        image: back
+        environment:
+            - REQUEST_ORIGIN=http://localhost:5000
+            - GIN_MODE=release
+        ports:
+            - 8080:8080
+    frontend:
+        image: front
+        environment:
+            - REACT_APP_BACKEND_URL=http://localhost:8080
+        ports:
+            - 5000:5000
