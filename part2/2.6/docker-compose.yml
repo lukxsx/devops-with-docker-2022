@@ -1,0 +1,35 @@
+# This assumes that you have build the backend and frontend from ex 1.14
+# with the names "front" and "back"
+
+version: '3.8'
+services:
+    backend:
+        image: back
+        environment:
+            - REQUEST_ORIGIN=http://localhost:5000
+            - GIN_MODE=release
+            - REDIS_HOST=redis
+            - POSTGRES_HOST=postgres
+            - POSTGRES_USER=testuser
+            - POSTGRES_PASSWORD=testpass
+            - POSTGRES_DATABASE=testdb
+        restart: unless-stopped
+        ports:
+            - 8080:8080
+    frontend:
+        image: front
+        environment:
+            - REACT_APP_BACKEND_URL=http://localhost:8080
+        ports:
+            - 5000:5000
+        restart: unless-stopped
+    redis:
+        image: redis:latest
+        restart: unless-stopped    
+    postgres:
+        image: postgres:latest
+        environment:
+            - POSTGRES_USER=testuser
+            - POSTGRES_PASSWORD=testpass
+            - POSTGRES_DB=testdb
+        restart: unless-stopped
