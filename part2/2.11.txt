@@ -1,0 +1,22 @@
+I tried to start using Docker on my website project which is made with the Flask
+framework for Python. I used the python:3.9-alpine image. The image will run the
+application using the Gunicorn server, but it can be easily modified to use
+the internal Flask development server.
+
+I had some problems with the python dependencies. First psycopg2 complained while
+building because the image didn't have PostgreSQL insalled. I fixed this by using
+the psycopg2-binary package.
+
+The python package Pillow caused the most problems. It's installation from pip
+failed every time, because it needs some development packages to compile. 
+By reading Stackoverflow, I found a way. I modified the Docker file so that the
+required dev packages are installed first from Alpine repos. Pillow is then
+installed with a pip, and after that the dev packages are removed.
+
+I added a sed command to edit the Pillow out from the requirements.txt, because
+pip would try to install it again (and fail). Not the app is working, but there
+were still some errors caused by the pillow package. Some image-editing libraries
+that it needs seem to be missing from the image. I need to investigate that.
+
+So far the docker works for development, but I still need to improve few things
+in order to use it for running the application.
