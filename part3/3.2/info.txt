@@ -1,0 +1,26 @@
+I created a bash script that clones a git repo, builds the image and pushes it to
+the Docker Hub. It takes command line arguments.
+
+   -r [repo URL]    URL of the git repo
+   -u [username]    Docker Hub username
+   -p [password]    Docker Hub password or token
+   -n [name]        (Optional) Name for the container (default is repo name)
+
+For example
+
+./builder.sh -r https://github.com/lukxsx/devopswithdocker-flasktest -u <user> -p <pass/token>
+This will clone the repo, login to Docker Hub with the username and password and push it to the
+docker hub.
+
+With the -n option, you can specify the name that is going to be used for Docker Hub if it differs
+from the git repo name.
+
+If no username with -u option is provided, user is asked to login with "docker login".
+
+
+This can be run in a container by building the provided Dockerfile and running it. For example
+
+docker build -t builder .
+docker run -v /var/run/docker.sock:/var/run/docker.sock builder -r <repo> -u <user> -p <pass/token>
+
+If you want to use interactive login, use -it flag for docker run command
