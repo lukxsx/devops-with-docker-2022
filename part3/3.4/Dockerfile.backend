@@ -1,0 +1,27 @@
+# Using alpine image of go
+FROM ubuntu:22.04
+
+EXPOSE 8080
+
+# Set release env variable. Without this the backend will run in the debug mode
+ENV GIN_MODE=release
+
+# Setting the env variable for cors check
+ENV REQUEST_ORIGIN=http://localhost:5000
+
+WORKDIR /backend
+COPY . .
+
+RUN useradd -m appuser && \
+  chown -R :appuser /backend && \
+  chmod -R 775 /backend && \
+  apt-get update && \
+  apt-get install -y ca-certificates golang-go && \
+  go build && \
+  apt-get purge -y --auto-remove golang-go && \
+  rm -rf /var/lib/apt/lists/*
+
+# Run the server
+USER appuser
+CMD ./server
+

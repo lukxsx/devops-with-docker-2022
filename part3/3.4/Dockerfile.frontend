@@ -1,0 +1,30 @@
+# I'm using node image from Docker Hub instead of installing node with the bash script.
+# This could be done too with for example ubuntu or debian image, and using curl with the script
+# But I think this is a better way
+FROM ubuntu:latest
+
+# Expose the port
+EXPOSE 5000
+
+# Set env variable for backend
+ENV REACT_APP_BACKEND_URL=http://localhost/api
+
+WORKDIR /frontend
+
+COPY . .
+
+RUN useradd -m appuser && \
+  chown -R :appuser /frontend && \
+  chmod -R a+x /frontend && \
+  apt-get update && \
+  apt-get install -y curl && \
+  curl -fsSL https://deb.nodesource.com/setup_16.x | bash - && \
+  apt-get install -y nodejs && \
+  apt-get purge -y --auto-remove curl && \
+  rm -rf /var/lib/apt/lists/* && \
+  node -v && npm -v && npm install && \
+  npm run build && npm install -g serve
+
+USER appuser
+# Start the application
+CMD serve -s -l 5000 build
