@@ -1,4 +1,3 @@
-# Using alpine image of go
 FROM ubuntu:22.04
 
 EXPOSE 8080
