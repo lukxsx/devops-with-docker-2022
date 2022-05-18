@@ -1,6 +1,0 @@
-Frontend
-  Before: 1.23GB
-  After:  467MB
-Backend
-  Before: 1.12GB
-  After:  430MB
